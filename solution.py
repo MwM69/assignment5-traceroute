@@ -93,7 +93,7 @@ def get_route(hostname):
             try:
                 d = build_packet()
                 mySocket.sendto(d, (hostname, 0))
-                t= time.time()
+                t = time.time()
                 startedSelect = time.time()
                 whatReady = select.select([mySocket], [], [], timeLeft)
                 howLongInSelect = (time.time() - startedSelect)
@@ -137,7 +137,7 @@ def get_route(hostname):
                     bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here
-                    tracelist1.append([ttl, (timeReceived - timeSent)*1000, destAddr, hostN])
+                    tracelist1.append([ttl, (timeReceived - timeSent) * 1000, destAddr, hostN])
                     print(tracelist1)
                     #Fill in end
                 elif types == 3:
@@ -155,6 +155,7 @@ def get_route(hostname):
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     tracelist1.append([ttl, (timeReceived - timeSent) * 1000, destAddr, hostN])
                     print(tracelist1)
+                    return
                     #Fill in end
                 else:
                     #Fill in start
@@ -164,7 +165,7 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
-    return tracelist2
+
 
 if __name__ == '__main__':
     get_route("google.co.il")
